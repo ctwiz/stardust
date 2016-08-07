@@ -1,6 +1,6 @@
-usr/local/bin/bitcoin-qt usr/bin
-share/pixmaps/bitcoin32.xpm usr/share/pixmaps
-share/pixmaps/bitcoin16.xpm usr/share/pixmaps
-share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/bitcoin-qt.desktop usr/share/applications
-debian/bitcoin-qt.protocol usr/share/kde4/services/
+usr/local/bin/stardust-qt usr/bin
+share/pixmaps/stardust32.xpm usr/share/pixmaps
+share/pixmaps/stardust16.xpm usr/share/pixmaps
+share/pixmaps/stardust128.png usr/share/pixmaps
+debian/stardust-qt.desktop usr/share/applications
+debian/stardust-qt.protocol usr/share/kde4/services/

@@ -1,4 +1,4 @@
-package org.bitcoin;
+package org.stardust;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

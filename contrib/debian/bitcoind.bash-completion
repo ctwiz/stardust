@@ -1,2 +1,2 @@
-contrib/bitcoind.bash-completion	bitcoind
-contrib/bitcoin-cli.bash-completion	bitcoin-cli
+contrib/stardustd.bash-completion	stardustd
+contrib/stardust-cli.bash-completion	stardust-cli

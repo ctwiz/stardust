@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Copyright (c) 2016 The Bitcoin Core developers
+# Copyright (c) 2016 The Stardust Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from test_framework.mininode import *
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import StardustTestFramework
 from test_framework.util import *
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.siphash import siphash256
@@ -15,7 +15,7 @@ CompactBlocksTest -- test compact blocks (BIP 152)
 '''
 
 
-# TestNode: A peer we use to send messages to bitcoind, and store responses.
+# TestNode: A peer we use to send messages to stardustd, and store responses.
 class TestNode(SingleNodeConnCB):
     def __init__(self):
         SingleNodeConnCB.__init__(self)
@@ -79,7 +79,7 @@ class TestNode(SingleNodeConnCB):
         self.send_message(headers_message)
 
 
-class CompactBlocksTest(BitcoinTestFramework):
+class CompactBlocksTest(StardustTestFramework):
     def __init__(self):
         super().__init__()
         self.setup_clean_chain = True
@@ -194,7 +194,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         sendcmpct.announce = False
         check_announcement_of_new_block(self.nodes[0], self.test_node, lambda: self.test_node.last_cmpctblock is None and self.test_node.last_headers is not None)
 
-    # This test actually causes bitcoind to (reasonably!) disconnect us, so do this last.
+    # This test actually causes stardustd to (reasonably!) disconnect us, so do this last.
     def test_invalid_cmpctblock_message(self):
         print("Testing invalid index in cmpctblock message...")
         self.nodes[0].generate(101)
@@ -210,7 +210,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         assert(int(self.nodes[0].getbestblockhash(), 16) == block.hashPrevBlock)
 
     # Compare the generated shortids to what we expect based on BIP 152, given
-    # bitcoind's choice of nonce.
+    # stardustd's choice of nonce.
     def test_compactblock_construction(self):
         print("Testing compactblock headers and shortIDs are correct...")
 
@@ -281,7 +281,7 @@ class CompactBlocksTest(BitcoinTestFramework):
                 header_and_shortids.shortids.pop(0)
             index += 1
 
-    # Test that bitcoind requests compact blocks when we announce new blocks
+    # Test that stardustd requests compact blocks when we announce new blocks
     # via header or inv, and that responding to getblocktxn causes the block
     # to be successfully reconstructed.
     def test_compactblock_requests(self):
@@ -458,7 +458,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         assert_equal(absolute_indexes, [6, 7, 8, 9, 10])
 
         # Now give an incorrect response.
-        # Note that it's possible for bitcoind to be smart enough to know we're
+        # Note that it's possible for stardustd to be smart enough to know we're
         # lying, since it could check to see if the shortid matches what we're
         # sending, and eg disconnect us for misbehavior.  If that behavior
         # change were made, we could just modify this test by having a
@@ -486,7 +486,7 @@ class CompactBlocksTest(BitcoinTestFramework):
     def test_getblocktxn_handler(self):
         print("Testing getblocktxn handler...")
 
-        # bitcoind won't respond for blocks whose height is more than 15 blocks
+        # stardustd won't respond for blocks whose height is more than 15 blocks
         # deep.
         MAX_GETBLOCKTXN_DEPTH = 15
         chain_height = self.nodes[0].getblockcount()

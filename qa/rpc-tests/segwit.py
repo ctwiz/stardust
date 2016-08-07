@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2016 The Bitcoin Core developers
+# Copyright (c) 2016 The Stardust Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,7 @@
 # Test the SegWit changeover logic
 #
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import StardustTestFramework
 from test_framework.util import *
 from test_framework.mininode import sha256, ripemd160
 import os
@@ -69,7 +69,7 @@ def getutxo(txid):
     utxo["txid"] = txid
     return utxo
 
-class SegWitTest(BitcoinTestFramework):
+class SegWitTest(StardustTestFramework):
 
     def setup_chain(self):
         print("Initializing test directory "+self.options.tmpdir)

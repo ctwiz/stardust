@@ -1,15 +1,15 @@
 [Unit]
-Description=Bitcoin's distributed currency daemon
+Description=Stardust's distributed currency daemon
 After=network.target
 
 [Service]
-User=bitcoin
-Group=bitcoin
+User=stardust
+Group=stardust
 
 Type=forking
-PIDFile=/var/lib/bitcoind/bitcoind.pid
-ExecStart=/usr/bin/bitcoind -daemon -pid=/var/lib/bitcoind/bitcoind.pid \
--conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoind -disablewallet
+PIDFile=/var/lib/stardustd/stardustd.pid
+ExecStart=/usr/bin/stardustd -daemon -pid=/var/lib/stardustd/stardustd.pid \
+-conf=/etc/stardust/stardust.conf -datadir=/var/lib/stardustd -disablewallet
 
 Restart=always
 PrivateTmp=true
